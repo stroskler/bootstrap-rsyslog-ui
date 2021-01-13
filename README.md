@@ -9,6 +9,21 @@ Installation
 * Copy /var/www/html/bootstrap-rsyslog-ui/config-template.php to /var/www/html/bootstrap-rsyslog-ui/config.php
 * Edit config.php and correct mysql settings accordingly
 
+Create login database schema
+---
+```
+# Create database 'login'
+create database login;
+
+# Create table for the accounts
+CREATE TABLE `user_account_table` (
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `last_logon` date NOT NULL,
+  `id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
+
 Automating chart cache
 ---
 * The charts are now based on cached json-files instead of querying the database each time the charts are drawned.
@@ -25,5 +40,12 @@ Database Maintenance
 ```
   1 0 * * * cd /var/www/html/maintenance; /usr/bin/php ./db-maintenance.php
 ```
+
+ToDo's
+---
+* improve automation
+* docker image
+* review code
+
 
 Enjoy!
