@@ -1,6 +1,7 @@
-#bootstrap-rsyslog-ui
+<h1>bootstrap-rsyslog-ui</h1>
 
-Screenshot: https://raw.githubusercontent.com/hmsdao/bootstrap-rsyslog-ui/master/images/main.PNG
+![Screenshot](https://raw.githubusercontent.com/hmsdao/bootstrap-rsyslog-ui/master/images/main.PNG)
+![Login](https://github.com/stroskler/bootstrap-rsyslog-ui/blob/master/images/login-site.png)
 
 Installation
 ---
