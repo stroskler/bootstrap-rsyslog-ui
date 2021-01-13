@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 
-<?php include 'config.php'; ?>
+<?php 
+include 'admin/login_config.php'; 
+
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["id"])){
+	header("location: login.php");
+	exit;
+}
+
+function logout() {
+	session_start();
+	session_destroy();
+	header("location: login.php");
+}
+
+?>
 
 <html lang="en">
   <head>
@@ -358,7 +376,7 @@
       </form>
       <form class="navbar-form navbar-right" role="search">
         <button type="submit" class="btn btn-default" data-toggle="tooltip-bottom" title="Settings (not implemented yet)"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
-        <button type="submit" class="btn btn-default" data-toggle="tooltip-bottom" title="Log out (not implemented yet)"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></button>
+		<a class="btn" href="logout.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></button>
       </form>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
