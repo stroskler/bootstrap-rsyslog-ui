@@ -1,4 +1,4 @@
 config.php
 .htaccess
 json/reports/cache/*.json
-admin/login_config.php
+admin/*.php
