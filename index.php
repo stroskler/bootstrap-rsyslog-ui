@@ -343,6 +343,11 @@ function logout() {
                 .replace(/'/g, "&#039;");
         }
 
+    //Table refresh doin johnny-style
+    setInterval(function(){
+            $('#table-style').bootstrapTable('refresh');
+    }, 5000);
+
 	</script>
   
  <body>
