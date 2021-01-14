@@ -232,29 +232,19 @@ function logout() {
 				}
 			}
 			
-			var three = false;
-			var four = false;
-			var five = false;
-			var six = false;
-			var seven = false;
-			
+			/* changed progressbar to static values, stacked them, removed striped */
+
 			for(var x = 0; x < items; x++)
 			{
 				switch(data[x][0])
 				{
-					case "3": { $("#pgError").css('width', ((data[x][1]/sum) * 100) + "%"); three = true; break; }
-					case "4": { $("#pgWarning").css('width', ((data[x][1]/sum) * 100) + "%"); four = true; break; }
-					case "5": { $("#pgNotice").css('width', ((data[x][1]/sum) * 100) + "%"); five = true; break; }
-					case "6": { $("#pgInfo").css('width', ((data[x][1]/sum) * 100) + "%"); six = true; break; }
-					case "7": { $("#pgDebug").css('width', ((data[x][1]/sum) * 100) + "%"); seven = true; break; }
+					case "3": { $("#pgError").css('width', "20%") }
+					case "4": { $("#pgWarning").css('width', "20%") }
+					case "5": { $("#pgNotice").css('width', "20%") }
+					case "6": { $("#pgInfo").css('width', "20%") }
+					case "7": { $("#pgDebug").css('width', "20%") }
 				}
 			}
-			
-			if( three == false ) { $("#pgError").css('width', "0%"); }
-			if( four == false ) { $("#pgWarning").css('width', "0%"); }
-			if( five == false ) { $("#pgNotice").css('width', "0%"); }
-			if( six == false ) { $("#pgInfo").css('width', "0%"); }
-			if( seven == false ) { $("#pgDebug").css('width', "0%"); }
 			
 		});
 	}
@@ -344,10 +334,28 @@ function logout() {
         }
 
     //Table refresh doin johnny-style
-    setInterval(function(){
-            $('#table-style').bootstrapTable('refresh');
-    }, 5000);
+	$(document).ready(function() {
+		var running = true;
+		var timer = null;
 
+		function refreshLogTable () {
+			setInterval(function() { $('#table-style').bootstrapTable('refresh'); }, 5000);
+		}
+
+
+		$('#cmdAutoRefresh').click(function() {
+			if(running) {
+				$(this).find('span').removeClass('glyphicon-pause').addClass('glyphicon-play');
+				running = false;
+				clearTimeout(timer)
+			} else {
+				$(this).find('span').removeClass('glyphicon-play').addClass('glyphicon-pause');
+				running = true;
+				timer setTimeout(refreshLogTable, 1000);
+			}
+			return false;
+		});
+	});
 	</script>
   
  <body>
@@ -376,7 +384,8 @@ function logout() {
         <div class="form-group">
           <input id="txtSearch" type="text" class="form-control input-widesearch" placeholder="Search" style="width: 500px">
         </div>
-        <button id="cmdSearch" type="submit" class="btn btn-default" data-toggle="tooltip-bottom" title="Refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+		<button id="cmdAutoRefresh" type=submit class="btn btn-default" data-toggle="tooltip-bottom" title="AutoRefresh"><span class="glyphicon glyphicon-pause" aria-hidden="true"></span></button>
+        <button id="cmdSearch" type="submit" class="btn btn-default" data-toggle="tooltip-bottom" title="Refresh"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span></button>
         <button id="cmdReset" type="submit" class="btn btn-default" data-toggle="tooltip-bottom" title="Reset all">Reset</button>
       </form>
       <form class="navbar-form navbar-right" role="search">
@@ -388,22 +397,21 @@ function logout() {
 </nav>
 
 <div id="debugmessages"></div>
-
 <div class="progress">
-  <div id="pgDebug" class="progress-bar progress-bar-primary progress-bar-striped" style="width: 0%" data-toggle="tooltip" title="Debug">
-    <span class="sr-only">20% Complete (debug)</span>
+  <div id="pgDebug" class="progress-bar progress-bar-primary" style="width: 0%" data-toggle="tooltip" title="Debug">
+    Debug
   </div>
-  <div id="pgInfo" class="progress-bar progress-bar-info progress-bar-striped" style="width: 0%" data-toggle="tooltip" title="Information">
-    <span class="sr-only">20% Complete (info)</span>
+  <div id="pgInfo" class="progress-bar progress-bar-info" style="width: 0%" data-toggle="tooltip" title="Information">
+    Info
   </div>
-  <div id="pgNotice" class="progress-bar progress-bar-success progress-bar-striped" style="width: 0%" data-toggle="tooltip" title="Notice">
-    <span class="sr-only">20% Complete (notice)</span>
+  <div id="pgNotice" class="progress-bar progress-bar-success" style="width: 0%" data-toggle="tooltip" title="Notice">
+    Notice
   </div>
-  <div id="pgWarning" class="progress-bar progress-bar-warning progress-bar-striped" style="width: 0%" data-toggle="tooltip" title="Warning">
-    <span class="sr-only">20% Complete (warning)</span>
+  <div id="pgWarning" class="progress-bar progress-bar-warning" style="width: 0%" data-toggle="tooltip" title="Warning">
+    Warning
   </div>
-  <div id="pgError" class="progress-bar progress-bar-danger progress-bar-striped" style="width: 0%" data-toggle="tooltip" title="Error">
-    <span class="sr-only">20% Complete (danger)</span>
+  <div id="pgError" class="progress-bar progress-bar-danger" style="width: 0%" data-toggle="tooltip" title="Error">
+    Error
   </div>
 </div>
 
