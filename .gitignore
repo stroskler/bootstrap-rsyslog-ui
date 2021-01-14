@@ -2,3 +2,4 @@ config.php
 .htaccess
 json/reports/cache/*.json
 admin/*.php
+.vscode/*.json
