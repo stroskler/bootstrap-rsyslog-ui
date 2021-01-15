@@ -34,12 +34,11 @@ function logout() {
 	<link href="css/bootstrap-context.css" rel="stylesheet"> 
     <link href="css/custom.css" rel="stylesheet">   
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+	<!-- Bootstrap dropdown sources -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
   </head>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -389,7 +388,11 @@ function logout() {
         <button id="cmdReset" type="submit" class="btn btn-default" data-toggle="tooltip-bottom" title="Reset all">Reset</button>
       </form>
       <form class="navbar-form navbar-right" role="search">
-        <button type="submit" class="btn btn-default" data-toggle="tooltip-bottom" title="Settings (not implemented yet)"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Settings<span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><a href="#">User Management</a></li>
+		  <li><a href="#">Placeholder</a></li>
+        </ul>
 		<a class="btn" href="logout.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></button></a>
       </form>
     </div><!-- /.navbar-collapse -->
