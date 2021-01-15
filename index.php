@@ -345,14 +345,14 @@ function logout() {
 
 		$('#cmdAutoRefresh').click(function() {
 			if(running) {
-				$(this).find('span').removeClass('glyphicon-pause').addClass('glyphicon-play');
-				running = false;
-				clearTimeout(timer)
-			} else {
-				$(this).find('span').removeClass('glyphicon-play').addClass('glyphicon-pause');
-				running = true;
-				timer setTimeout(refreshLogTable, 1000);
-			}
+                        $(this).find('span').removeClass('glyphicon-pause').addClass('glyphicon-play');
+                        running = false;
+                        timer = setInterval(function() { $('#table-style').bootstrapTable('refresh'); }, 5000);
+                        } else {
+                        $(this).find('span').removeClass('glyphicon-play').addClass('glyphicon-pause');
+                        running = true;
+                        timer = clearInterval(timer);
+                        }
 			return false;
 		});
 	});
