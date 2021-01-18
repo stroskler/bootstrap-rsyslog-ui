@@ -7,7 +7,7 @@ include 'admin/login_config.php';
 session_start();
  
 // Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["id"])){
+if(!isset($_SESSION["username"])){
 	header("location: login.php");
 	exit;
 }
@@ -370,7 +370,7 @@ function logout() {
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="#"><?php echo $site_name; ?></a>
+		<a class="navbar-brand" href="index.php"><?php echo $site_name; ?></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -388,10 +388,10 @@ function logout() {
         <button id="cmdReset" type="submit" class="btn btn-default" data-toggle="tooltip-bottom" title="Reset all">Reset</button>
       </form>
       <form class="navbar-form navbar-right" role="search">
-      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Settings<span class="caret"></span></button>
+      <button class="btn btn-active dropdown-toggle" type="button" data-toggle="dropdown">Settings<span class="caret"></span></button>
         <ul class="dropdown-menu">
-          <li><a href="#">User Management</a></li>
-		  <li><a href="#">Placeholder</a></li>
+		  <li><a href="admin/profile.php">Profile</a></li>
+          <li><a href="admin/user-management.php">User Management</a></li>
         </ul>
 		<a class="btn" href="logout.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></button></a>
       </form>

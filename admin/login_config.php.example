@@ -1,6 +1,5 @@
 <?php
-/* Database credentials. Assuming you are running MySQL
-server with default setting (user 'root' with no password) */
+/* Database credentials for RO User */
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'username');
 define('DB_PASSWORD', '1Str0n6P@ssw0rd!');
@@ -11,6 +10,23 @@ $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
  
 // Check connection
 if($link === false){
-    die("ERROR: Could not connect. " . mysqli_connect_error());
+    die("RO ERROR: Could not connect. " . mysqli_connect_error());
 }
+
+/* Database credentials for RW User */
+define('RW_DB_SERVER', 'localhost');
+define('RW_DB_USERNAME', 'login_rw');
+define('RW_DB_PASSWORD', 'somecoolPassword!');
+define('RW_DB_NAME', 'login');
+ 
+/* Attempt to connect to MySQL database */
+$rw_connection = mysqli_connect(RW_DB_SERVER, RW_DB_USERNAME, RW_DB_PASSWORD, RW_DB_NAME);
+ 
+// Check connection
+if($rw_connection === false){
+    die("RW ERROR: Could not connect. " . mysqli_connect_error());
+}
+
+
+
 ?>

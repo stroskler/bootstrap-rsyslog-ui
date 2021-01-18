@@ -23,20 +23,14 @@ if (isset($_POST["login_button"])) {
         $username = $_POST["username"];
         $password = $_POST["password"];
 
-        $statement = "SELECT * FROM user_account_table WHERE username = '$username' AND password = '$password'";
+        $statement = "SELECT * FROM user_account_table WHERE username = '$username' AND password = '$password' AND active = '1'";
         
-        if ($connection) {
-            echo "SQL ALIVE";
-        }
-        
-
         $query = mysqli_query($connection, $statement);
         $results = @mysqli_num_rows($query);
 
         printf($results);
 
         if ($results > 0) {
-            $_SESSION["id"] = 1;
             $_SESSION["username"] = mysqli_query($connection, $results);
             $login_date = "UPDATE user_account_table SET last_logon= 'NOW()' WHERE username ='$username'";
             mysqli_query($connection, $login_date);
