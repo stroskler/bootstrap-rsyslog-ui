@@ -20,9 +20,11 @@ create database login;
 CREATE TABLE `user_account_table` (
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `last_logon` date NOT NULL,
-  `id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `last_logon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `active` tinyint(1) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
 
 Automating chart cache
